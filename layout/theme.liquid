@@ -1,0 +1,112 @@
+{% comment %}
+  *** Base page to render all theme contents ***
+  See https://shopify.dev/docs/themes/architecture
+{% endcomment %}
+<!doctype html>
+<html>
+  <head>
+    <meta name="description" content="unique hand drawn tshirts brisbane">
+    <meta name="author" content="etch">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Shopify generated header contents -->
+    {% comment %}
+      See https://shopify.dev/docs/themes/architecture/layouts#content_for_header
+    {% endcomment %}
+    {{ content_for_header }}
+
+    <!-- My own global CSS -->
+    {{ 'my_css.css' | asset_url | stylesheet_tag }}
+
+    <!-- My own global JavaScript -->
+    {{ 'my_js.js' | asset_url | script_tag }}
+
+    <!-- My own font CSS (if selected only) -->
+    {% comment %}
+      See https://shopify.dev/docs/themes/architecture/settings/fonts
+    {% endcomment %}
+    {% if settings.use_font == true %}
+      {{ 'my_font.css' | asset_url | stylesheet_tag }}
+    {% endif %}
+    
+
+
+  </head>
+
+  <body>
+    <div class="footer-top">
+      {% sections 'footer_group' %}
+      </div>
+
+    <div class="my_layout">
+      {% comment %}
+      <!-- My own header group -->
+      <!-- {% sections 'header_group' %} -->
+
+      <!-- Shopify generated template (body) contents -->
+      
+        See https://shopify.dev/docs/themes/architecture/layouts#content_for_layout
+      {% endcomment %}
+      <div class="desktop-flex-container">
+      <div class="desktop-icons-container">
+
+      <div class="desktop-icon">
+      <a href="{{ request.locale.root_url }}" style="text-align: center">
+      <img src="{{ 'computer-icon.png' | asset_url }}" alt="Computer Icon" width="70px">
+      </a>
+      <a href="{{ request.locale.root_url }}">
+      <div style="text-align: center"> 
+      Home
+      </div>
+      </a> </div>
+
+      <div class="desktop-icon"> 
+      <a href="/cart" style="text-align: center">
+      <img src="{{ 'cart-icon.png' | asset_url }}" alt="Cart Icon" width="70px"> 
+      </a>
+      <a href="/cart">
+      <div style="text-align: center"> 
+      Cart [{{ cart.item_count }}]
+      </div>
+      </a>
+      </div>
+
+      <div class="desktop-icon">
+      {% for collection in collections %}
+        {% if collection.title == "Prints" %}
+          {% continue %}
+        {% else %}      
+            <a href="{{ collection.url }}" style="text-align: center">
+            <img src="{{ 'collection icon.png' | asset_url }}" alt="Book Icon" width="70px">
+            <div style="text-align: center"> 
+            Collections
+            </div>
+            </a>
+        {% endif %}
+      {% endfor %}
+      </div>
+
+      <div class="desktop-icon">
+      <a href="/blogs/news/follow-us" style="text-align: center">
+      <img src="{{ 'interwebs-icon.png' | asset_url }}" alt="World Icon" width="70px">
+      </a>
+      <a href="/blogs/news/follow-us">
+      <div style="text-align: center"> 
+      Socials
+      </div>
+      </a></div>
+
+      </div>
+      <div class="my-layout">
+      {{ content_for_layout }}
+      </div>
+      </div>
+
+      <!-- My own footer group -->
+      <div class="footer-bottom">
+      {% sections 'footer_group' %}
+      </footer>
+    </div>
+  </body>
+  
+
+</html>

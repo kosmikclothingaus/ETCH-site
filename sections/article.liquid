@@ -1,0 +1,79 @@
+{% comment %}
+  *** Article page ***
+  See https://shopify.dev/docs/themes/architecture/templates/article
+{% endcomment %}
+
+
+
+<div class="page-flex-container">
+<div class="page-window-box">
+
+<div class="window-box-header">
+
+  <div class="window-box-title">
+    <h2> C:/{{ page.title }}</h2>
+  </div>
+
+     <div class="window-box-icons"> 
+        <img src="{{'window-minusbox-v2.png' | asset_url }}" alt="minusbox">
+        <img src="{{ 'window-enlargebox-v2.png' | asset_url }}" alt="enlarge">
+        <img src="{{ 'window-exitbox-v2.png' | asset_url }}" alt="exit">
+      </div>
+
+</div>
+
+<div class="window-box-content">
+    <div class="page-content">
+    </div>
+</div>
+
+</div>
+  <!-- Header section -->
+  <!--
+  {% render 'section_title' %}
+
+  <h1>{{ section.settings.title }}</h1>
+
+  
+  {% comment %}
+    See https://shopify.dev/docs/api/liquid/objects/article
+  {% endcomment %}
+  <fieldset>
+    <legend>Title</legend>
+    <div>{{ article.title }}</div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Author</legend>
+    <div>{{ article.author }}</div>
+    <div>Published: {{ article.published_at | date: '%B %d, %Y' }}</div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Content</legend>
+    <div class="my_content">{{ article.content }}</div>
+  </fieldset>
+
+  {% render 'home' %}
+
+  <p>👉 <a href="https://shopify.dev/docs/themes/architecture/templates/article" target="_blank">Dev. doc</a></p>
+  -->
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.article.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Article Title",
+      "default": "THIS IS MY ARTICLE"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["article"]
+  }
+}
+{% endschema %}

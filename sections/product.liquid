@@ -1,0 +1,437 @@
+{% comment %}
+  *** Product page ***
+  See https://shopify.dev/docs/themes/architecture/templates/product
+{% endcomment %}
+<div class="desktop-flex-container">
+<div class="product-flex-container">
+<div class="product-window-box">
+
+<div class="window-box-header">
+
+<div class="window-box-title">
+<h2 font-size=10>C:/etch/all-collections/tees/{{ product.title }}</h2>
+</div>
+
+<div class="window-box-icons"> 
+  <img src="/assets/window-minusbox-v2.png" alt="minusbox">
+  <img src="/assets/window-enlargebox-v2.png" alt="enlarge">
+  <img src="/assets/window-exitbox-v2.png" alt="exit">
+</div>
+
+</div>
+
+<div class="window-box-content">
+{% form 'product', product %}
+<div class="product-flex-container">
+        <!-- Product image -->   
+        <div class="product-images">
+          {% if product.images != empty %}
+            
+            {% assign images = product.images | where: "alt", title %}
+            <div class="product-images-slideshow">
+
+            <!-- FOR NOW TEMPORARY FIX - EVERY PRODUCT HAS [x] (5) IMAGES -->
+            <div class="product-image">
+            <img src="{{ images[0] | img_url: '500x' }}" style="width:100%" alt="minusbox">
+            </div>
+            <div class="product-image">
+            <img src="{{ images[1] | img_url: '500x' }}" style="width:100%" alt="minusbox">
+            </div>
+            <div class="product-image">
+            <img src="{{ images[2] | img_url: '500x' }}" style="width:100%" alt="minusbox">
+            </div>
+            <div class="product-image">
+            <img src="{{ images[3] | img_url: '500x' }}" style="width:100%" alt="minusbox">
+            </div>
+            <div class="product-image">
+            <img src="{{ images[4] | img_url: '500x' }}" style="width:100%" alt="minusbox">
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)"> < </a>
+            <a class="next" onclick="plusSlides(1)"> > </a>
+            </div>
+            <br>
+
+            <!-- dots under slideshow -->
+            <div style="text-align:center">
+            
+            {% for image in product.images %}
+              <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
+            {% endfor %}
+
+            
+            {% else %}
+            </div>
+
+            <img alt="No image" width="600" height="600" loading="lazy">
+          {% endif %}
+
+          <script>
+            
+            let slideIndex = 1;
+            showSlides(slideIndex);
+
+            function plusSlides(n) {
+              showSlides(slideIndex += n);
+            }
+
+            function currentSlide(n) {
+              showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+              let i;
+              let slides = document.getElementsByClassName("product-image");
+              let dots = document.getElementsByClassName("dot");
+              if (n > slides.length) {slideIndex = 1}    
+              if (n < 1) {slideIndex = slides.length}
+              for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+              }
+              for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+              }
+              slides[slideIndex-1].style.display = "block";  
+              dots[slideIndex-1].className += " active";
+            }
+        </script>
+        </div>
+
+        <div class="product-pop-up">
+        <!-- Pop-up info box -->
+        <button id="popup-info-trigger" class="trigger-btn">Info</button>
+        <div id="popup-info-box" class="popup">
+          <div class="popup-content">
+            <h2>CLOTHING INFO</h2>
+            <div>{{ product.description }}</div>
+            <span class="close-info-btn">&times;</span>
+          </div>
+        </div>
+
+        <!-- Pop-up sizing box -->
+        <button id="popup-size-trigger" class="trigger-btn">Sizing</button>
+        <div id="popup-size-box" class="popup">
+          <div class="popup-content">
+            <h2>CLOTHING INFO</h2>
+            <div>{{ product.description }}</div>
+            <span class="close-size-btn">&times;</span>
+          </div>
+        </div>
+
+        <!-- Pop-up shipping box -->
+        <button id="popup-ship-trigger" class="trigger-btn">Shipping</button>
+        <div id="popup-ship-box" class="popup">
+          <div class="popup-content">
+            <h2>CLOTHING INFO</h2>
+            <div>{{ product.description }}</div>
+            <span class="close-ship-btn">&times;</span>
+          </div>
+        </div>
+        </div>
+
+        
+        <div class="product-options">
+        
+        <!-- Variant selector -->
+        <select name="id" class="my_top_space my_bottom_space" onchange="idChange(this);" id="my_id">
+          {% for variant in product.variants %}
+            <option
+              value="{{ variant.id }}"
+              {% if variant == product.selected_or_first_available_variant %}
+                selected="selected"
+              {% endif %}
+              data-img="{% if variant.image %}{{ variant | image_url: width: 600 }}{% elsif product.images != empty %}{{ product | image_url: width: 600 }}{% endif %}"
+              data-price="{{ variant.price | money_with_currency}}"
+            >
+              {{ variant.title }} - {{variant.price | money}}   
+            </option>     
+        {% endfor %}
+        </select>
+        
+        
+        <!-- Quantity input -->
+        <div class="my_top_space my_bottom_space">
+          <label for="my_quantity">Quantity:</label>
+          <input type="text" name="quantity" id="my_quantity" min="1" value="1" size="10">
+        </div>
+
+        <div class="my_bottom_space my_font_large" id="my_price">{{ product.price | money_with_currency }}</div>
+        </div>
+
+        <!-- Buy buttons (Add to cart / Buy now) -->
+        <div style="margin: 0 auto; width: 80%;">
+          <input
+            type="submit"
+            
+            value="Add to my cart"
+            style="width: 100%;"
+            class="my_top_space my_bottom_space my_font_large"
+          >
+          
+        </div>
+       
+        {{ form | payment_button }}
+
+        <p>&nbsp;</p>
+        
+    
+</div> 
+{% endform %}
+</div>
+</div> </div> </div> 
+{% comment %}
+<div class="my_section my_product">
+  <!-- Product section -->
+  {% render 'section_title' %}
+
+  <h2>{{ section.settings.my_title }}</h2>
+
+  <div style="overflow: hidden; margin: 0 auto;">
+    <!-- Product image -->
+    <div style="float: left; width: 65%;">
+      <fieldset>
+        <legend>{{ product.title }}</legend>
+        <div id="my_img">
+          {% if product.images != empty %}
+            {{ product | image_url: width: 600 | image_tag: height: 600, srcset: null, alt: '🫥 No image' }}
+          {% else %}
+            <img alt="No image" width="600" height="600" loading="lazy">
+          {% endif %}
+        </div>
+        <div>{{ product.description }}</div>
+      </fieldset>
+    </div>
+    <div style="float: left; width: 30%; margin-left: 3px;">
+      <!-- Rendering blocks within the product form -->
+      {% form 'product', product %}
+        {% for block in section.blocks %}
+          <div class="my_block" style="margin-top: 6px;">
+            <div class="my_block_title">Block ({% increment i %})</div>
+
+            {% case block.type %}
+              {% when 'my_type_1' %}
+              {% endcomment %}
+                <!-- Free text -->
+                {% comment %}
+                  You can choose the metafield for the text block with dynamic sources.
+                   See https://shopify.dev/docs/themes/architecture/settings/dynamic-sources
+                {% endcomment %}
+                {% comment %}
+                <div style="text-align: left;" class="my_left_space my_bottom_space my_top_space">
+                  <b>Text:</b> {{ block.settings.my_text }}
+                </div>
+
+              {% when 'my_type_2' %}
+                <!-- Variant selector -->
+                <select name="id" class="my_top_space my_bottom_space" onchange="idChange(this);" id="my_id">
+                  {% for variant in product.variants %}
+                    <option
+                      value="{{ variant.id }}"
+                      {% if variant == product.selected_or_first_available_variant %}
+                        selected="selected"
+                      {% endif %}
+                      data-img="{% if variant.image %}{{ variant | image_url: width: 600 }}{% elsif product.images != empty %}{{ product | image_url: width: 600 }}{% endif %}"
+                      data-price="{{ variant.price | money_with_currency}}"
+                    >
+                      {{ variant.title }} - {{ variant.price | money }}
+                    </option>
+                  {% endfor %}
+                </select>
+                <div class="my_bottom_space my_font_large" id="my_price">{{ product.price | money_with_currency }}</div>
+
+              {% when 'my_type_3' %}
+                <!-- Quantity input -->
+                <div class="my_top_space my_bottom_space">
+                  <label for="my_quantity">Quantity:</label>
+                  <input type="text" name="quantity" id="my_quantity" min="1" value="1" size="10">
+                </div>
+
+              {% when 'my_type_4' %}
+                <!-- Line intem properties -->
+                <label for="my_line_prop">Line item properties:</label>
+                <select name="properties[My Line Property]" class="my_top_space my_bottom_space" id="my_line_prop">
+                  <option value=""></option>
+                  <option value="Value-1">Value 1</option>
+                  <option value="Value-2">Value 2</option>
+                  <option value="Value-3">Value 3</option>
+                </select>
+
+              {% when 'my_type_5' %}
+                <!-- Buy buttons (Add to cart / Buy now) -->
+                <div style="margin: 0 auto; width: 80%;">
+                  <input
+                    type="submit"
+                    value="Add to cart"
+                    style="width: 100%;"
+                    class="my_top_space my_bottom_space my_font_large"
+                  >
+                  {{ form | payment_button }}
+                </div>
+                <p>&nbsp;</p>
+
+              {% when 'my_type_6' %}
+                <!-- Selling Plan selector -->
+                {% endcomment %}
+                {% comment %}
+                  See https://shopify.dev/docs/themes/pricing-payments/purchase-options/subscription-ux-guidelines
+                {% endcomment %}
+                {% comment %}
+                <fieldset id="my_plan" style="text-align: left;">
+                  <legend>Choose your selling plan</legend>
+                  <div>
+                    <input
+                      type="radio"
+                      id="na99999"
+                      name="selling_plan"
+                      value=""
+                    >
+                    <label for="na99999">One-time purchase</label>
+                  </div>
+                  {% for selling_plan_group in product.selling_plan_groups %}
+                    {% for selling_plan in selling_plan_group.selling_plans %}
+                      <div>
+                        <input
+                          type="radio"
+                          id="{{ selling_plan.id }}"
+                          name="selling_plan"
+                          value="{{ selling_plan.id }}"
+                        >
+                        <label for="{{ selling_plan.id }}">{{ selling_plan.name }}</label>
+                      </div>
+                    {% endfor %}
+                  {% endfor %}
+                </fieldset>
+                <p>
+                  👉
+                  <a
+                    href="https://shopify.dev/docs/themes/pricing-payments/purchase-options/subscription-ux-guidelines"
+                    target="_blank"
+                    >Dev. doc</a
+                  >
+                </p>
+
+              {% when '@app' %}
+              {% endcomment %}
+                <!-- App block -->
+                {% comment %}
+                  See https://shopify.dev/docs/themes/architecture/sections/app-blocks
+                {% endcomment %}
+                {% comment %}
+                {% render block %}
+                <p>
+                  👉
+                  <a
+                    href="https://shopify.dev/docs/themes/architecture/sections/app-blocks"
+                    target="_blank"
+                    >Dev. doc</a
+                  >
+                </p>
+            {% endcase %}
+          </div>
+        {% endfor %}
+      {% endform %}
+    </div>
+  </div>
+  <div style="float: none;"></div>
+  {% endcomment %}
+  <!-- Recommendation -->
+  {% comment %}
+    See https://shopify.dev/docs/themes/product-merchandising/recommendations
+    See https://shopify.dev/docs/api/section-rendering
+  {% endcomment %}
+  {% comment %}
+  <div id="my_recommendations"></div>
+
+  {% render 'home' %}
+
+  <p>👉 <a href="https://shopify.dev/docs/themes/architecture/templates/product" target="_blank">Dev. doc</a></p>
+</div>
+{% endcomment %}
+<script>
+  // The given variant id in the URL paramerers
+  const given_id = new URLSearchParams(window.location.search).get('variant');
+
+  // Change the product image and price based on the selected variants and the URL parameter.
+  const idChange = (obj) => {
+    document.querySelector('#my_img > img').src = obj.options[obj.selectedIndex].dataset.img;
+    document.querySelector('#my_price').innerHTML = obj.options[obj.selectedIndex].dataset.price;
+    if (given_id != obj.value) {
+      const params = new URLSearchParams(window.location.search);
+      params.set('variant', obj.value);
+      window.location.search = params.toString();
+    }
+  };
+  // Set the initial selection.
+  idChange(document.querySelector('#my_id'));
+
+  // Call the recommendation Ajax API to reder the result responsed by 'sections/recommendations.liquid'.
+  // See https://shopify.dev/docs/api/ajax/reference/product-recommendations
+  if (!Shopify.designMode) {
+    // If this is shown in the theme editor, cross origin network error occurrs, so this should be called on the storefront only.
+    // See https://shopify.dev/docs/themes/architecture/sections/integrate-sections-with-the-theme-editor
+    fetch(
+      `${window.Shopify.routes.root}recommendations/products?product_id={{ product.id }}&limit=4&section_id=recommendations&intent=related`
+    )
+      .then((response) => response.text())
+      .then((text) => {
+        document.querySelector('#my_recommendations').innerHTML = text;
+      });
+  }
+</script>
+
+
+{% schema %}
+{
+  "name": "t:sections.product.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "my_title",
+      "label": "Product title",
+      "default": "THIS IS MY PRODUCT"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Text",
+      "type": "my_type_1",
+      "settings": [
+        {
+          "type": "text",
+          "id": "my_text",
+          "label": "Product text",
+          "default": "{{ product.vendor }}",
+          "info": "You can choose the product metafield for this text value."
+        }
+      ]
+    },
+    {
+      "name": "Variants",
+      "type": "my_type_2"
+    },
+    {
+      "name": "Quantity",
+      "type": "my_type_3"
+    },
+    {
+      "name": "Line item properties",
+      "type": "my_type_4"
+    },
+    {
+      "name": "Buy buttons",
+      "type": "my_type_5"
+    },
+    {
+      "name": "Selling plans",
+      "type": "my_type_6"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "enabled_on": {
+    "templates": ["product"]
+  }
+}
+{% endschema %}

@@ -1,0 +1,918 @@
+/* 
+  Global CSS included by layout/theme.liquid
+  Section local CSS should be defined in each section Liquid.
+*/
+@font-face {
+  font-family: "helvetica bold";
+  src: url("{{ 'Helvetica-Bold2.woff2' | asset_url }}") format("woff2"),
+  url("{{ 'Helvetica-Bold.woff' | asset_url }}") format("woff");
+}
+@font-face {
+  font-family: "helvetica bold condensed";
+  src: url("{{ 'Helvetica_Bold_Condensed.woff2' | asset_url }}") format("woff2"),
+  url("{{ 'Helvetica_Bold_Condensed.woff' | asset_url }}") format("woff");
+}
+@font-face {
+  font-family: "futura bold";
+  src: url("{{ 'Futura-Bold-font.woff2' | asset_url }}") format("woff2"),
+  url("{{ 'Futura-Bold-font.woff' | asset_url }}") format("woff");
+}
+@font-face {
+  font-family: "futura bold italic";
+  src: url("{{ 'Futura-Bold-Italic-font.woff2' | asset_url }}") format("woff2"),
+  url("{{ 'Futura-Bold-Italic-font.woff' | asset_url }}") format("woff");
+}
+@font-face {
+  font-family: "consolas";
+  src: url("{{ 'CONSOLA.woff2' | asset_url }}") format("woff2"),
+  url("{{ 'CONSOLA.woff' | asset_url }}") format("woff");
+}
+@font-face {
+  font-family: "segoe UI";
+  src: url("{{ 'segoeui.woff2' | asset_url }}") format("woff2"),
+  url("{{ 'segoeui.woff' | asset_url }}") format("woff");
+}
+
+a {
+  font-family: "segoe UI";
+  text-decoration: none;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+}
+
+h1 {
+  font-family: "futura bold";
+}
+
+h2 {
+  font-family: "consolas";
+}
+
+p {
+  font-family: "futura bold italic";
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+   height: 100%;
+   width: 100%;
+   background-image: url(BACKGROUNDv4.png); /*your background image*/  
+   background-repeat: no-repeat; /*we want to have one single image not a repeated one*/  
+   background-size: cover; /*this sets the image to fullscreen covering the whole screen*/  
+   /*css hack for ie*/     
+   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.BACKGROUNDv2.png',sizingMethod='scale');
+   -ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src='BACKGROUNDv2.png',sizingMethod='scale')"; 
+}
+
+.home-product {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 150px;
+  left: 200px;
+  z-index: 2;
+}
+
+.home-logo {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 1000px;
+  top: 50px;
+  z-index: 1;
+}
+
+.featured-product {
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 220px);
+  height: calc(100% - 200px);
+  margin: 80px 70px 70px 150px;
+}
+
+.featured-product-gif {
+  background-image: url('8ball-gif.gif');
+  background-size: contain;
+  width: 480px;
+  height: 100%;
+  background-repeat: no-repeat;
+  
+}
+
+.featured-product-text {
+  background-image: url('featuredTeeText.png');
+  background-size: contain;
+  width: 155px;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.desktop-flex-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  align-items: stretch;
+  
+}
+
+.product-flex-container {
+  display: flex;
+  height: 90vh;
+  width: 100%;
+  justify-content: center;
+}
+
+.my-layout {
+  flex: 1;
+}
+
+.page-flex-container {
+  display: flex;
+  height: 90vh;
+  width: 100%;
+  justify-content: center;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+.page-image-container {
+  height: 100%;
+}
+
+.collections-flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: fill;
+  height: 100%;
+}
+
+.collection-display {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.collection-prints {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('prints-placeholder.jpg');
+  background: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.collection-tees {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('tees-placeholder.jpg');
+  background: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.collection-button {
+  background-color: rgb(36, 141, 92);
+  width: 200px;
+  height: 100px;
+}
+
+.collection-collage {
+  margin: 10px; 
+  box-sizing: border-box;
+}
+
+.collection-collage img{
+  margin: 10px; 
+  width: 65%;
+  height: auto;
+}
+
+.collection-collage {
+  width: calc(25% - 20px);
+}
+
+.collection-desktop {
+  display: block;
+}
+
+.collection-mobile {
+  display: none;
+}
+
+.tee-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.desktop-icons-container {
+  flex: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+
+.footer-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background: linear-gradient(#868789, #4C4D4F, #1B1C1E, #17181A);
+  height: 50px;
+}
+
+.footer-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 15px;
+}
+
+.home-product-window-box {
+  background-color: #D1D1D1;
+  aspect-ratio: 856 / 660;
+  width: min(95%, 856px);
+  height: min(95%, 660px);
+  margin: 0 0 0 0;
+  box-sizing: border-box; 
+  box-shadow: inset 0.3em 0.3em 0.3em 0 rgba(255, 255, 255, 0.79), inset -0.3em -0.3em 0.3em 0 rgba(0, 0, 0, 0.84);
+}
+
+.home-logo-window-box {
+  background-color: #CBC7C7;
+  aspect-ratio: 803 / 480;
+  width: min(95%, 803px);
+  height: min(95%, 480px);
+  margin: 0 0 0 0;
+  box-sizing: border-box; 
+  box-shadow: inset 0.3em 0.3em 0.3em 0 rgba(255, 255, 255, 0.79), inset -0.3em -0.3em 0.3em 0 rgba(0, 0, 0, 0.84);
+}
+
+.window-box {
+  flex: 1;
+  background-color: #CBC7C7;
+  margin: 10px 50px 0px 50px; /* top right bottom left */
+  box-sizing: border-box;
+  box-shadow: inset 0.3em 0.3em 0.3em 0 rgba(255, 255, 255, 0.79), inset -0.3em -0.3em 0.3em 0 rgba(0, 0, 0, 0.84);
+  width: fit-content;
+  height: fit-content;
+}
+
+.page-window-box {
+  background-color: #CBC7C7;
+  margin: 10px 50px 0px 50px; /* top right bottom left */
+  box-sizing: border-box;
+  box-shadow: inset 0.3em 0.3em 0.3em 0 rgba(255, 255, 255, 0.79), inset -0.3em -0.3em 0.3em 0 rgba(0, 0, 0, 0.84);
+  width: fit-content;
+  height: fit-content;
+}
+
+.product-window-box {
+  background-color: #CBC7C7;
+  margin: 10px 50px 10px 50px;
+  box-sizing: border-box;
+  box-shadow: inset 0.3em 0.3em 0.3em 0 rgba(255, 255, 255, 0.79), inset -0.3em -0.3em 0.3em 0 rgba(0, 0, 0, 0.84);
+  width: fit-content;
+  height: fit-content;
+  max-height: 90vh;
+}
+
+.window-box-header {
+  background-color: #303C64; /* Set the background color to blue */
+  height: 25px; /* Adjust the height as needed */
+  margin: 10px 20px 10px 20px; /* Adds margin on all sides (top, right, bottom, left) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: inset 0.1em 0.1em 0.1em 0 rgba(0, 0, 0, 0.54), inset -0.1em -0.1em 0.1em 0 rgba(255, 255, 255, 0.31);
+}
+
+.product-window-box-header {
+  background-color:rgb(0, 0, 0); /* Set the background color to blue */
+  height: 25px; /* Adjust the height as needed */
+  margin: 10px 20px 10px 20px; /* Adds margin on all sides (top, right, bottom, left) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-pop-up {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.product-images-slideshow {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.product-image {
+  display: none;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+.window-box-icons {
+  display: flex; /* Arranges images side by side */
+  justify-content: flex-end; /* Aligns images to the right side of the blue box */
+  align-items: center; /* Vertically centers the images in the blue box */
+  height: 100%; /* Ensures the container spans the height of the blue box */
+  padding-right: 10px; /* Adds spacing between the images and the right edge of the blue box */
+}
+
+.window-box-title {
+  color: white;
+  font-size: 13px;
+  margin-left: 10px;
+}
+
+.window-box-icons img {
+  width: 23px; /* Adjust size for square images */
+  height: 23px; /* Ensures the images remain square */
+  margin-left: 5px; /* Adds spacing between the images */
+  object-fit: cover; /* Ensures the image content fits within the square dimensions */
+}
+
+.window-box-content {
+  background-color: rgb(255, 255, 255);
+  height: calc(100% - 60px);
+  margin: 0px 20px 10px 20px;  
+}
+
+
+.home-logo-window-box-content {
+  height: calc(100% - 10px);
+  width: calc(100% - 40px);
+  margin: 0px 20px 10px 20px;
+}
+
+.home-product-window-box-content {
+  display: flex;
+  background-image: url('product-window-inside.png');
+  background: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  margin: 0px 20px 10px 20px;
+}
+
+.my_section {
+  text-align: center;
+  border: solidrgb(226, 0, 0);
+  margin: 0 0 0 0;
+}
+
+.my_block {
+  border: solid #cccccc;
+  margin: 0 0 0 0;
+  background-color:rgba(155, 22, 22, 0.66);
+}
+
+.my_block_header {
+  height: 200px;
+  width: 200px;
+}
+
+.my_block_title {
+  text-align: left;
+  font-weight: bold;
+}
+
+.my_font_large {
+  font-size: x-large;
+}
+
+table {
+  margin: 0 auto;
+  width: 100%;
+}
+
+table,
+th,
+td {
+  border: 5px solid #ffffffff;
+  border-collapse: collapse;
+  box-sizing: border-box; 
+  box-shadow: inset 0.3em 0.3em 0.3em 0 rgba(255, 255, 255, 0.79), inset -0.3em -0.3em 0.3em 0 rgba(0, 0, 0, 0.84);
+}
+
+th,
+td {
+  background-color:#CBC7C7;
+}
+
+.my_header {
+  background-color: #ffffff;
+}
+
+.footer-top{
+  display: none;
+}
+
+.footer-bottom{
+  display: block;
+}
+
+.my_footer {
+  background-color: #d5f8eb;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.my_home {
+  background-color:rgb(145, 136, 38);
+}
+
+.my_collection {
+  background-color: #f8e0d5;
+}
+
+.my_list-collection {
+  background-color: #f8d5d6;
+}
+
+.my_product {
+  background-color: #f5d5f8;
+}
+
+.my_cart {
+  background-color: #e4cdbc;
+}
+
+.my_article {
+  background-color: #d6d9da;
+}
+
+.my_blog {
+  background-color: #b0b2b2;
+}
+
+.my_page {
+  background-color:rgb(146, 23, 23);
+}
+
+.my_account {
+  background-color: #ffffff;
+}
+
+.my_search {
+  background-color: #f6e2f4;
+}
+
+.my_content {
+  width: 80%;
+  background-color:rgb(165, 64, 64);
+  margin: 0 auto;
+}
+
+.my_result {
+  width: 95%;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.my_list {
+  width: 80%;
+  background-color: #ffffff;
+  text-align: left;
+  margin: 0 auto;
+}
+
+.my_gift_card {
+  padding-left: 46%;
+}
+
+.my_company {
+  background-color: #d4f6c7;
+}
+
+/* Popup box styling */
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Popup content box */
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  margin: 10% auto; /* Center the popup */
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Close button */
+.close-btn1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-btn1:hover {
+  color: red;
+}
+
+.close-btn2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-btn2:hover {
+  color: red;
+}
+
+.close-btn3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-btn3:hover {
+  color: red;
+}
+
+/* Call-to-action button */
+.cta-button {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+/* Trigger button */
+.trigger-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.trigger-btn:hover {
+  background-color: #218838;
+}
+
+/* CODING FOR PHONE SCREENS */ 
+@media screen and (max-width: 768px) {
+
+  a {
+  font-family: "segoe UI";
+  text-decoration: none;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+  font-size: 0.75em;
+  }
+
+  h1 {
+    font-family: "futura bold";
+    font-size: 0.75em;
+  }
+
+  h2 {
+    font-family: "consolas";
+    font-size: 0.85em;
+  }
+
+  p {
+    font-family: "futura bold italic";
+  }
+
+  html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+body {
+  height: 100%;
+   overflow-x: hidden;
+   overflow-y: auto;
+   margin: 0 0 0 0;
+   background-image: url(BACKGROUND_P_v1.png); /*your background image*/  
+   background-repeat: no-repeat; /*we want to have one single image not a repeated one*/  
+   background-size: cover; /*this sets the image to fullscreen covering the whole screen*/  
+   /*css hack for ie*/  
+   background-position: center;
+   background-attachment: fixed;   
+   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.BACKGROUND_P_v1.png',sizingMethod='scale');
+   -ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src='BACKGROUND_P_v1.png',sizingMethod='scale')"; 
+   padding-bottom: 150px;
+}
+
+.footer-top{
+  display: block;
+}
+
+.footer-bottom{
+  display: none;
+}
+
+.window-box {
+  flex: 1;
+  background-color: #CBC7C7;
+  margin: 10px 10px 100px 10px; /* top right bottom left */
+  box-sizing: border-box;
+  box-shadow: inset 0.3em 0.3em 0.3em 0 rgba(255, 255, 255, 0.79), inset -0.3em -0.3em 0.3em 0 rgba(0, 0, 0, 0.84);
+}
+
+.desktop-flex-container {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+  justify-content: center; 
+  align-content: center;
+  row-gap: 30px; 
+}
+
+
+.my_footer {
+  background-color: #d5f8eb;
+  width: 100%;
+  position: static;
+  bottom: auto;
+  top: auto;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.desktop-icons-container {
+  order: 3;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-left: 0px;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background: linear-gradient(#868789, #4C4D4F, #1B1C1E, #17181A);
+  height: 50px;
+}
+
+.footer-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 15px;
+}
+
+.home-logo {
+  position: static;
+  display: flex;
+  width: 100%;
+  z-index: 1;
+  flex: 1;
+}
+
+.home-logo-window-box {
+  background-color: #CBC7C7;
+  margin: 0 20px 0 20px;
+  box-sizing: border-box; 
+  box-shadow: inset 0.3em 0.3em 0.3em 0 rgba(255, 255, 255, 0.79), inset -0.3em -0.3em 0.3em 0 rgba(0, 0, 0, 0.84);
+}
+
+.home-logo-window-box-content {
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
+  margin: 0px 20px 10px 20px;
+}
+
+.home-product {
+  position: static;
+  display: flex;
+  width: 100%;
+  z-index: 1;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-product-window-box {
+  background-color: #D1D1D1;
+  box-sizing: border-box; 
+  box-shadow: inset 0.3em 0.3em 0.3em 0 rgba(255, 255, 255, 0.79), inset -0.3em -0.3em 0.3em 0 rgba(0, 0, 0, 0.84);
+}
+
+.home-product-window-box-content {
+  display: flex;
+  background-image: url(product-window-inside.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: calc(100% - 40px);
+  height: calc(100% - 70px);
+  margin: 0px 20px 10px 20px;
+}
+
+.featured-product {
+  display: flex;
+  flex-direction: row;
+  width: 75%;
+  height: 80%;
+  margin-left: 15%;
+  margin-top: 8%;
+}
+
+.featured-product-gif {
+  background-image: url('8ball-gif.gif');
+  background-size: contain;
+  flex: 0 0 70%;
+  height: 100%;
+  background-repeat: no-repeat;
+  
+}
+
+.featured-product-text {
+  background-image: url('featuredTeeText.png');
+  background-size: contain;
+  flex: 0 0 30%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.page-flex-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center; 
+  align-content: center;
+}
+
+.collections-flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: fill;
+  height: 100%;
+}
+
+.collection-display {
+  flex-grow: 1;
+  width: 100%;
+  height: 500px;
+}
+
+.collection-collage {
+  width: calc(100% - 20px);
+}
+
+.collection-collage img{
+  margin: 10px; 
+  width: 80%;
+  height: auto;
+}
+
+.tee-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.collection-desktop {
+  display: none;
+}
+
+.collection-mobile {
+  display: block;
+}
+
+
+}

@@ -1,0 +1,63 @@
+{% comment %}
+  *** Header ***
+  See https://shopify.dev/docs/themes/architecture/layouts
+{% endcomment %}
+
+<div></div>
+
+<!-- <div class="my_section my_header"> -->
+  <!-- Header section -->
+   <!-- {% render 'section_title' %} -->
+
+  {% comment %}
+  <h1>
+    <a href="{{ request.locale.root_url }}">{{ section.settings.title }}</a>
+  </h1>
+  {% endcomment %}
+
+  <!-- {% render 'hello' %} -->
+
+  
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Header Title",
+      "default": "THIS IS MY HEADER"
+    }
+  ],
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "name": "My Image",
+      "type": "my_type_1",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "my_image",
+          "label": "My Image"
+        }
+      ]
+    },
+    {
+      "name": "My Color",
+      "type": "my_type_2",
+      "settings": [
+        {
+          "type": "color",
+          "id": "my_color",
+          "label": "My Color"
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  }
+}
+{% endschema %}
