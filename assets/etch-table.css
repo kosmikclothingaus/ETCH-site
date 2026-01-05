@@ -1,0 +1,27 @@
+/* 
+  ETCH Theme - Table Components
+  Cart tables and other table-based layouts
+*/
+
+/* ============================================================================
+   TABLE BASE STYLES
+   ============================================================================ */
+
+/* Main table container */
+table {
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  /* Table, header, and cell base styles */
+  table, th, td {
+    border: 5px solid var(--color-table-border);
+    border-collapse: collapse;
+    box-sizing: border-box;
+    box-shadow: var(--window-shadow-inset); /* Retro inset shadow effect */
+  }
+  
+  /* Table cell background */
+  th, td {
+    background-color: var(--color-table-bg);
+  }

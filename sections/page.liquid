@@ -1,123 +1,61 @@
 {% comment %}
-  *** Page page ***
+  Page section
   See https://shopify.dev/docs/themes/architecture/templates/page
 {% endcomment %}
+
 <div class="desktop-flex-container">
-<div class="page-flex-container">
-<div class="page-window-box">
-
-<div class="window-box-header">
-
-  <div class="window-box-title">
-    <h2> C:/{{ page.title }}</h2>
-  </div>
-
-     <div class="window-box-icons"> 
-        <img src="{{'window-minusbox-v2.png' | asset_url }}" alt="minusbox">
-        <img src="{{ 'window-enlargebox-v2.png' | asset_url }}" alt="enlarge">
-        <img src="{{ 'window-exitbox-v2.png' | asset_url }}" alt="exit">
+  <div class="page-flex-container">
+    <div class="page-window-box">
+      <div class="window-box-header">
+        <div class="window-box-title">
+          <h2>C:/{{ page.title }}</h2>
+        </div>
+        <div class="window-box-icons">
+          <img src="{{ 'window-minimise.png' | asset_url }}" alt="Minimize">
+          <img src="{{ 'window-maximise.png' | asset_url }}" alt="Maximize">
+          <img src="{{ 'window-close.png' | asset_url }}" alt="Close">
+        </div>
       </div>
 
-</div>
+      <div class="window-box-content">
+        <div class="page-content">
+          <h1>{{ page.title }}</h1>
+          <p>{{ page.content }}</p>
+          
+          {% if page.title == "Settings" %}
+            <p>🌎
+              <select class="locale-selector" id="locale-select">
+                {% for locale in localization.available_languages %}
+                  {% assign path = request.path | remove_first: request.locale.root_url %}
+                  {% assign url = locale.root_url | append: '/' | append: path | replace: '//', '/' | replace: '//', '/' %}
+                  <option {% if locale.iso_code == request.locale.iso_code %}selected{% endif %} value="{{ url }}">{{ locale.name }}</option>
+                {% endfor %}
+              </select>
+              <select class="currency-selector" id="currency-select">
+                {% for country in localization.available_countries %}
+                  <option {% if country.iso_code == localization.country.iso_code %}selected{% endif %} value="{{ request.path }}?currency={{ country.currency.iso_code }}&amp;country={{ country.iso_code }}">
+                    {{ country.currency.symbol }} {{ country.currency.iso_code }} / {{ country.iso_code }}
+                  </option>
+                {% endfor %}
+              </select>
+            </p>
 
-<div class="window-box-content">
-    <div class="page-content">
-   <!-- Header section -->
-    <h1>{{ page.title }}</h1>
-    <p>{{ page.content }}</p>
-    {% if page.title == "Settings" %}
-        <p>🌎<select>
-        {% for locale in localization.available_languages %} {% assign path = request.path | remove_first: request.locale.root_url %} {% assign url = locale.root_url | append: '/' | append: path | replace: '//', '/' | replace: '//', '/' %}
-        <option selected value="{{ url }}">{{ locale.name }}
-        </option>
-        {% endfor %}
-        </select>
-        <select>
-        {% for country in localization.available_countries %}
-        <option selected value="{{ request.path }}?currency={{ country.currency.iso_code }}&amp;country={{ country.iso_code }}">
-        {{ country.currency.symbol }} {{ country.currency.iso_code }} / {{ country.iso_code }}</option>
-        {% endfor %}
-        </select></p>
-
-         <!-- Search -->
-        <p style="text-align: right;" class="my_right_space">
-          🔎 <input type="text" placeholder="Input keywords and push Enter" size="30" id="my_search">
-        </p>
-
-        <div style="float: none;"></div>
-      
-      <script>
-        // See https://shopify.dev/docs/themes/navigation-search/search
-        const input = document.querySelector('#my_search');
-        input.addEventListener('keypress', (e) => {
-          if (event.key === 'Enter') {
-            const path = `{{ request.locale.root_url }}/`.replace(/\/\//, '/');
-            window.location.href = `${path}search?q=${input.value}&type=product&options[unavailable_products]=hide&options[prefix]=last`;
-          }
-        });
-        input.value = new URLSearchParams(window.location.search).get('q');
-      </script>
-    {% endif %}
-
-    {% render 'home' %}
-
+            <p style="text-align: right;" class="my_right_space">
+              🔎 <input type="text" placeholder="Input keywords and push Enter" size="30" id="my_search" class="search-input">
+            </p>
+          {% endif %}
+        </div>
+      </div>
     </div>
-
-
   </div>
-  </div>
-</div> </div>
-{% comment %}
-{% endcomment %}
-{% comment %}
-
-  <!-- Header section -->
-  {% render 'section_title' %}
-
-  <h1>{{ section.settings.title }}</h1>
-  {% endcomment %}
-
-  <!-- Page -->
-  {% comment %}
-    See https://shopify.dev/docs/api/liquid/objects/page
-  <fieldset>
-    <legend>Title</legend>
-    <div>{{ page.title }}</div>
-  </fieldset>
-
-  <fieldset>
-    <legend>Author</legend>
-    <div>{{ page.author }}</div>
-    <div>Published: {{ page.published_at | date: '%B %d, %Y' }}</div>
-  </fieldset>
-
-  <fieldset>
-    <legend>Content</legend>
-    <div class="my_content">{{ page.content }}</div>
-  </fieldset>
-
-  {% render 'home' %}
-
-  <p>👉 <a href="https://shopify.dev/docs/themes/architecture/templates/page" target="_blank">Dev. doc</a></p>
 </div>
-
-{% endcomment %}
 
 {% schema %}
 {
   "name": "t:sections.page.name",
   "limit": 1,
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Page Title",
-      "default": "THIS IS MY contact page"
-    }
-  ],
   "enabled_on": {
     "templates": ["page"]
   }
 }
 {% endschema %}
-

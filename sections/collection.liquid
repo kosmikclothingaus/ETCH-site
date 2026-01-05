@@ -1,113 +1,54 @@
 {% comment %}
-  *** Collection page ***
+  Collection page section
   See https://shopify.dev/docs/themes/architecture/templates/collection
 {% endcomment %}
+
 <div class="desktop-flex-container">
-<div class="window-box">
-
-<div class="window-box-header">
-
-<div class="window-box-title">
-<h2>C:/etch/all-collections/{{ collection.title }}</h2>
-</div>
-
-  <div class="window-box-icons"> 
-    <img src="{{'window-minusbox-v2.png' | asset_url }}" alt="minusbox">
-    <img src="{{ 'window-enlargebox-v2.png' | asset_url }}" alt="enlarge">
-    <img src="{{ 'window-exitbox-v2.png' | asset_url }}" alt="exit">
-  </div>
-
-</div>
-
-<div class="window-box-content">
-    <div class="tee-flex-container">
- <!-- <div style="overflow: hidden; margin: 0 auto;"> -->
-    {% for product in collection.products %}
-      <div class="collection-collage" style="text-align: center;">
-          <!-- <p>"{{ product.title }}"</p> -->
-          <div>
-            <a href="{{ product.url }}">
-
-            <div class="collection-desktop">
-
-              {% if product.images != empty %}
-                {{ product | image_url: width: 300 | image_tag: height: 300 }}
-              {% else %}
-                <img alt="No image" src="" width="300" height="300" loading="lazy">
-              {% endif %}
-
-            </div>
-
-            <div class="collection-mobile">
-
-              {% if product.images != empty %}
-                {{ product | image_url: width: 100 | image_tag: height: 100 }}
-              {% else %}
-                <img alt="No image" src="" width="300" height="300" loading="lazy">
-              {% endif %}
-
-            </div>
-
-
-            </a>
-          </div>
-          <!-- <div>{{ product.price | money_with_currency }}</div> -->
+  <div class="window-box">
+    <div class="window-box-header">
+      <div class="window-box-title">
+        <h2>C:/etch/all-collections/{{ collection.title }}</h2>
       </div>
-    {% endfor %}
-  </div>
-  <div style="float: none;"></div>
-</div>
-
-</div></div>
-
-{% comment %}
-<div class="my_section my_collection">
-  <!-- Collection section -->
-  {% render 'section_title' %}
-
-  <h2>{{ section.settings.my_title }}</h2>
-
-  <!-- Product thumbnails -->
-  <div style="overflow: hidden; margin: 0 auto; padding-left: 15%;">
-    {% for product in collection.products %}
-      <div style="float: left; width: 40%;">
-        <fieldset>
-          <legend>{{ product.title }}</legend>
-          <div>
-            <a href="{{ product.url }}">
-              {% if product.images != empty %}
-                {{ product | image_url: width: 300 | image_tag: height: 300 }}
-              {% else %}
-                <img alt="No image" src="" width="300" height="300" loading="lazy">
-              {% endif %}
-            </a>
-          </div>
-          <div>{{ product.price | money_with_currency }}</div>
-        </fieldset>
+      <div class="window-box-icons">
+        <img src="{{ 'window-minimise.png' | asset_url }}" alt="Minimize">
+        <img src="{{ 'window-maximise.png' | asset_url }}" alt="Maximize">
+        <img src="{{ 'window-close.png' | asset_url }}" alt="Close">
       </div>
-    {% endfor %}
+    </div>
+
+    <div class="window-box-content">
+      <div class="tee-flex-container">
+        {% for product in collection.products %}
+          <div class="collection-collage" style="text-align: center;">
+            <div>
+              <a href="{{ product.url }}">
+                <div class="collection-desktop">
+                  {% if product.images != empty %}
+                    {{ product | image_url: width: 300 | image_tag: height: 300 }}
+                  {% else %}
+                    <img alt="No image" src="" width="300" height="300" loading="lazy">
+                  {% endif %}
+                </div>
+                <div class="collection-mobile">
+                  {% if product.images != empty %}
+                    {{ product | image_url: width: 100 | image_tag: height: 100 }}
+                  {% else %}
+                    <img alt="No image" src="" width="300" height="300" loading="lazy">
+                  {% endif %}
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-  <div style="float: none;"></div>
-
-  {% render 'home' %}
-
-  <p>👉 <a href="https://shopify.dev/docs/themes/architecture/templates/collection" target="_blank">Dev. doc</a></p>
 </div>
-
-{% endcomment %}
 
 {% schema %}
 {
   "name": "t:sections.collection.name",
   "limit": 1,
-  "settings": [
-    {
-      "type": "text",
-      "id": "my_title",
-      "label": "Collection title",
-      "default": "COLLECTION TITLE GOES HERE"
-    }
-  ],
   "enabled_on": {
     "templates": ["collection"]
   }

@@ -1,0 +1,114 @@
+/* 
+  ETCH Theme - Product Page Components
+  Product image slideshow, options, and related UI elements
+*/
+
+/* ============================================================================
+   PRODUCT LAYOUT CONTAINERS
+   ============================================================================ */
+
+/* Main product page flex container */
+.product-flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Container for popup trigger buttons */
+  .product-pop-up {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Container for product options (variant selector, quantity, price) */
+  .product-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  
+  /* ============================================================================
+     PRODUCT IMAGE SLIDESHOW
+     ============================================================================ */
+  
+  /* Main slideshow container */
+  .product-images-slideshow {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+  
+  /* Individual slide - hidden by default, shown via JavaScript */
+  .product-image {
+    display: none;
+  }
+  
+  /* Previous/Next navigation arrows */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  /* Next button positioned on right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* Hover effect for navigation arrows */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  
+  /* ============================================================================
+     SLIDESHOW INDICATORS (DOTS)
+     ============================================================================ */
+  
+  /* Individual dot indicator */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  /* Active dot and hover state */
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  
+  /* ============================================================================
+     SLIDESHOW ANIMATIONS
+     ============================================================================ */
+  
+  /* Fade animation for slide transitions */
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from { opacity: .4; }
+    to { opacity: 1; }
+  }

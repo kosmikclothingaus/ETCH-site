@@ -1,0 +1,53 @@
+/* 
+  ETCH Theme - Footer Components
+  Footer bar and footer-related styles
+*/
+
+/* ============================================================================
+   FOOTER CONTAINER
+   ============================================================================ */
+
+/* Main footer flex container - horizontal bar at bottom */
+.footer-flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(#868789, #4C4D4F, #1B1C1E, #17181A);
+    height: 50px;
+  }
+  
+  /* Footer section wrapper */
+  .my_footer {
+    background-color: #d5f8eb;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  /* ============================================================================
+     FOOTER POSITIONING
+     ============================================================================ */
+  
+  /* Footer top position - used for mobile */
+  .footer-top {
+    display: none;
+  }
+  
+  /* Footer bottom position - used for desktop */
+  .footer-bottom {
+    display: block;
+  }
+  
+  /* ============================================================================
+     FOOTER ICONS
+     ============================================================================ */
+  
+  /* Individual footer icon */
+  .footer-icon {
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+  }

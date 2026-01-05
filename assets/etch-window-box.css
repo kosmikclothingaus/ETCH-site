@@ -1,0 +1,139 @@
+/* 
+  ETCH Theme - Window Box Components
+  All styles related to the retro Windows-style window boxes used throughout the site
+*/
+
+/* ============================================================================
+   BASE WINDOW BOX STYLES
+   ============================================================================ */
+
+/* Standard window box - used for most pages */
+.window-box {
+    flex: 1;
+    background-color: var(--color-window-bg);
+    margin: 10px 50px 0px 50px;
+    box-sizing: border-box;
+    box-shadow: var(--window-shadow-inset);
+    width: fit-content;
+    height: fit-content;
+  }
+  
+  /* Page-specific window box variant */
+  .page-window-box {
+    background-color: var(--color-window-bg);
+    margin: 10px 50px 0px 50px;
+    box-sizing: border-box;
+    box-shadow: var(--window-shadow-inset);
+    width: fit-content;
+    height: fit-content;
+  }
+  
+  /* Product page window box - has max height constraint */
+  .product-window-box {
+    background-color: var(--color-window-bg);
+    margin: 10px 50px 10px 50px;
+    box-sizing: border-box;
+    box-shadow: var(--window-shadow-inset);
+    width: fit-content;
+    height: fit-content;
+    max-height: 90vh;
+  }
+  
+  /* Home page product window box - uses alternate background color */
+  .home-product-window-box {
+    background-color: var(--color-window-bg-alt);
+    aspect-ratio: 856 / 660;
+    width: min(95%, 856px);
+    height: min(95%, 660px);
+    margin: 0;
+    box-sizing: border-box;
+    box-shadow: var(--window-shadow-inset);
+  }
+  
+  /* Home page logo window box */
+  .home-logo-window-box {
+    background-color: var(--color-window-bg);
+    aspect-ratio: 803 / 480;
+    width: min(95%, 803px);
+    height: min(95%, 480px);
+    margin: 0;
+    box-sizing: border-box;
+    box-shadow: var(--window-shadow-inset);
+  }
+  
+  /* ============================================================================
+     WINDOW BOX HEADER
+     ============================================================================ */
+  
+  /* Standard window header - blue bar with title and controls */
+  .window-box-header {
+    background-color: var(--color-window-header);
+    height: 25px;
+    margin: 10px 20px 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--window-header-shadow);
+  }
+  
+  /* Product page window header - uses black background */
+  .product-window-box-header {
+    background-color: var(--color-window-header-alt);
+    height: 25px;
+    margin: 10px 20px 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Window title text in header */
+  .window-box-title {
+    color: white;
+    font-size: 13px;
+    margin-left: 10px;
+  }
+  
+  /* Container for window control icons (minimize, maximize, close) */
+  .window-box-icons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    padding-right: 10px;
+  }
+  
+  /* Individual window control icons */
+  .window-box-icons img {
+    width: 23px;
+    height: 23px;
+    margin-left: 5px;
+    object-fit: cover;
+  }
+  
+  /* ============================================================================
+     WINDOW BOX CONTENT AREA
+     ============================================================================ */
+  
+  /* Standard window content area - white background */
+  .window-box-content {
+    background-color: rgb(255, 255, 255);
+    height: calc(100% - 60px);
+    margin: 0px 20px 10px 20px;
+  }
+  
+  /* Home logo window content - adjusted margins */
+  .home-logo-window-box-content {
+    height: calc(100% - 10px);
+    width: calc(100% - 40px);
+    margin: 0px 20px 10px 20px;
+  }
+  
+  /* Home product window content - uses background image (set inline in Liquid) */
+  .home-product-window-box-content {
+    display: flex;
+    /* Background image handled inline in home_page.liquid for asset_url support */
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    margin: 0px 20px 10px 20px;
+  }

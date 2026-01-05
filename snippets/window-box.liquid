@@ -1,0 +1,22 @@
+{% comment %}
+  Window Box Component
+  Reusable window box with header and content
+  Parameters:
+    - title: Window title (required)
+    - class: Additional CSS classes (optional)
+{% endcomment %}
+<div class="window-box {% if class %}{{ class }}{% endif %}">
+    <div class="window-box-header">
+      <div class="window-box-title">
+        <h2>{{ title }}</h2>
+      </div>
+      <div class="window-box-icons">
+        <img src="{{ 'window-minimise.png' | asset_url }}" alt="Minimize">
+        <img src="{{ 'window-maximise.png' | asset_url }}" alt="Maximize">
+        <img src="{{ 'window-close.png' | asset_url }}" alt="Close">
+      </div>
+    </div>
+    <div class="window-box-content">
+      {{ content }}
+    </div>
+  </div>

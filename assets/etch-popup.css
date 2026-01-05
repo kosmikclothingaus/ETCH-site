@@ -1,0 +1,95 @@
+/* 
+  ETCH Theme - Popup/Modal Components
+  Modal dialogs for product info, sizing, shipping, etc.
+*/
+
+/* ============================================================================
+   POPUP OVERLAY
+   ============================================================================ */
+
+/* Main popup overlay - full screen dark background */
+.popup {
+    display: none; /* Hidden by default, shown via JavaScript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Ensure it appears above other content */
+  }
+  
+  /* ============================================================================
+     POPUP CONTENT BOX
+     ============================================================================ */
+  
+  /* Popup content container - centered white box */
+  .popup-content {
+    background-color: #fff;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    margin: 10% auto; /* Centered vertically and horizontally */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ============================================================================
+     POPUP CLOSE BUTTONS
+     ============================================================================ */
+  
+  /* Close button styles - X symbol */
+  .close-btn1, .close-btn2, .close-btn3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  /* Close button hover state */
+  .close-btn1:hover, .close-btn2:hover, .close-btn3:hover {
+    color: red;
+  }
+  
+  /* ============================================================================
+     POPUP TRIGGER BUTTONS
+     ============================================================================ */
+  
+  /* Button that opens a popup */
+  .trigger-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Trigger button hover state */
+  .trigger-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* ============================================================================
+     CALL TO ACTION BUTTONS
+     ============================================================================ */
+  
+  /* General CTA button style */
+  .cta-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* CTA button hover state */
+  .cta-button:hover {
+    background-color: #0056b3;
+  }

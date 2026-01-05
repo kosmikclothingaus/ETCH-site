@@ -1,0 +1,253 @@
+/* 
+  ETCH Theme - Layout Styles
+  Page layouts, flex containers, and responsive design
+*/
+
+/* ============================================================================
+   DESKTOP LAYOUTS
+   ============================================================================ */
+
+/* Main desktop flex container - horizontal layout */
+.desktop-flex-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    align-items: stretch;
+  }
+  
+  /* Main content layout area */
+  .my-layout {
+    flex: 1;
+  }
+  
+  /* Product page flex container */
+  .product-flex-container {
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Page flex container */
+  .page-flex-container {
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Page content wrapper */
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+  }
+  
+  .page-image-container {
+    height: 100%;
+  }
+  
+  /* Collections flex container */
+  .collections-flex-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: fill;
+    height: 100%;
+  }
+  
+  .collection-display {
+    flex-grow: 1;
+    height: 100%;
+  }
+  
+  /* ============================================================================
+     HOME PAGE LAYOUTS
+     ============================================================================ */
+  
+  /* Home product window positioning */
+  .home-product {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 150px;
+    left: 200px;
+    z-index: 2;
+  }
+  
+  /* Home logo window positioning */
+  .home-logo {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 1000px;
+    top: 50px;
+    z-index: 1;
+  }
+  
+  /* Featured product container */
+  .featured-product {
+    display: flex;
+    flex-direction: row;
+    width: calc(100% - 220px);
+    height: calc(100% - 200px);
+    margin: 80px 70px 70px 150px;
+  }
+  
+  .featured-product-gif {
+    /* Background image set inline in home_page.liquid */
+    background-size: contain;
+    width: 480px;
+    height: 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .featured-product-text {
+    /* Background image set inline in home_page.liquid */
+    background-size: contain;
+    width: 155px;
+    height: 100%;
+    background-repeat: no-repeat;
+  }
+  
+  /* ============================================================================
+     MOBILE RESPONSIVE
+     ============================================================================ */
+  
+  @media screen and (max-width: 768px) {
+    /* Mobile body adjustments */
+    body {
+      background-position: center;
+      background-attachment: fixed;
+      padding-bottom: 150px;
+    }
+  
+    /* Mobile desktop flex container - vertical layout */
+    .desktop-flex-container {
+      display: flex;
+      flex-direction: column-reverse;
+      height: 100%;
+      justify-content: center;
+      align-content: center;
+      row-gap: 30px;
+    }
+  
+    /* Mobile footer positioning */
+    .my_footer {
+      background-color: #d5f8eb;
+      width: 100%;
+      position: static;
+      bottom: auto;
+      top: auto;
+      margin-top: 0px;
+      margin-bottom: 30px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+  
+    /* Mobile navigation - horizontal row */
+    .desktop-icons-container {
+      order: 3;
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      margin-left: 0px;
+    }
+  
+    .desktop-icon {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      gap: 20px;
+    }
+  
+    /* Mobile home logo */
+    .home-logo {
+      position: static;
+      display: flex;
+      width: 100%;
+      z-index: 1;
+      flex: 1;
+    }
+  
+    .home-logo-window-box {
+      margin: 0 20px 0 20px;
+    }
+  
+    /* Mobile home product */
+    .home-product {
+      position: static;
+      display: flex;
+      width: 100%;
+      z-index: 1;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .home-product-window-box {
+      box-sizing: border-box;
+    }
+  
+    .home-product-window-box-content {
+      background-size: contain;
+      width: calc(100% - 40px);
+      height: calc(100% - 70px);
+      margin: 0px 20px 10px 20px;
+    }
+  
+    /* Mobile featured product */
+    .featured-product {
+      display: flex;
+      flex-direction: row;
+      width: 75%;
+      height: 80%;
+      margin-left: 15%;
+      margin-top: 8%;
+    }
+  
+    .featured-product-gif {
+      flex: 0 0 70%;
+      height: 100%;
+    }
+  
+    .featured-product-text {
+      flex: 0 0 30%;
+      height: 100%;
+    }
+  
+    /* Mobile page container */
+    .page-flex-container {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-content: center;
+    }
+  
+    /* Mobile collections */
+    .collections-flex-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: fill;
+      height: 100%;
+    }
+  
+    .collection-display {
+      flex-grow: 1;
+      width: 100%;
+      height: 500px;
+    }
+  }

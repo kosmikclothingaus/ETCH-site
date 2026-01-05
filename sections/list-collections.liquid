@@ -1,132 +1,65 @@
 {% comment %}
-  *** Collection list page ***
+  Collection list page section
   See https://shopify.dev/docs/themes/architecture/templates/list-collections
 {% endcomment %}
+
 <div class="desktop-flex-container">
-<div class="window-box">
+  <div class="window-box">
+    <div class="window-box-header">
+      <div class="window-box-title">
+        <h2>C:/etch/all-collections</h2>
+      </div>
+      <div class="window-box-icons">
+        <img src="{{ 'window-minimise.png' | asset_url }}" alt="Minimize">
+        <img src="{{ 'window-maximise.png' | asset_url }}" alt="Maximize">
+        <img src="{{ 'window-close.png' | asset_url }}" alt="Close">
+      </div>
+    </div>
 
-<div class="window-box-header">
-
-<div class="window-box-title">
-<h2> C:/etch/all-collections </h2>
-</div>
-
-  <div class="window-box-icons"> 
-    <img src="{{'window-minusbox-v2.png' | asset_url }}" alt="minusbox">
-    <img src="{{ 'window-enlargebox-v2.png' | asset_url }}" alt="enlarge">
-    <img src="{{ 'window-exitbox-v2.png' | asset_url }}" alt="exit">
-  </div>
-  
-</div>
-
-<div class="window-box-content">
-
-<div class="collections-flex-container">
-  
-       <div class="collection-display">
-              <div class="collection-tees">
-              {% for collection in collections %}
+    <div class="window-box-content">
+      <div class="collections-flex-container">
+        <div class="collection-display">
+          <div class="collection-tees" style="background-image: url('{{ 'img-placeholder-tees.jpg' | asset_url }}'); background-size: cover;">
+            {% for collection in collections %}
               {% if collection.title == "Prints" %}
                 {% continue %}
-              {% else %}      
-                  <a href="{{ collection.url }}">
+              {% else %}
+                <a href="{{ collection.url }}">
                   <button type="button" class="collection-button">
-                  <p> {{ collection.title }} </p>
+                    <p>{{ collection.title }}</p>
                   </button>
-                  </a>
-                  
-                
+                </a>
               {% endif %}
-              {% endfor %}
-              </div>
+            {% endfor %}
+          </div>
         </div>
 
         <div class="collection-display">
-              <div class="collection-prints">
-              {% for collection in collections %}
+          <div class="collection-prints" style="background-image: url('{{ 'img-placeholder-prints.jpg' | asset_url }}'); background-size: cover;">
+            {% for collection in collections %}
               {% if collection.title == "Tees" %}
                 {% break %}
               {% else %}
                 <a href="{{ collection.url }}">
-                <button type="button" class="collection-button">
-                <p>{{ collection.title }}</p>
-                </button>
+                  <button type="button" class="collection-button">
+                    <p>{{ collection.title }}</p>
+                  </button>
                 </a>
               {% endif %}
-              {% endfor %}
-              </div>
+            {% endfor %}
+          </div>
         </div>
-
-       
-   
-</div>
-</div>
-
-</div></div>
-
-  {% comment %}
-<div class="my_section my_list-collection">
-  <!-- Collection list section -->
-  {% render 'section_title' %}
-
-  <h2>{{ section.settings.my_title }}</h2>
-{% endcomment %}
-  <!-- Collection list -->
-  {% comment %}
-    See https://shopify.dev/docs/api/liquid/objects/collections
-  {% endcomment %}
-    {% comment %}
-  <div class="my_list">
-    <table>
-      {% for collection in collections %}
-        <tr>
-          <td style="text-align: center; border: none;">
-            {% if collection.image != null %}
-              {{ collection.image | image_url: width: 50 | image_tag: height: 50 }}
-            {% else %}
-              <img alt="No image" src="" width="50" height="50" loading="lazy">
-            {% endif %}
-          </td>
-          <td style="border: none;">
-            <p>
-              <a href="{{ collection.url }}">
-                {{ collection.title }}
-              </a>
-              (product count: {{ collection.all_products_count }})
-            </p>
-          </td>
-        </tr>
-      {% endfor %}
-    </table>
+      </div>
+    </div>
   </div>
-
-  {% render 'home' %}
-
-  <p>
-    👉 <a href="https://shopify.dev/docs/themes/architecture/templates/list-collections" target="_blank">Dev. doc</a>
-  </p>
 </div>
 
 {% schema %}
 {
   "name": "t:sections.list_collection.name",
   "limit": 1,
-  "settings": [
-    {
-      "type": "text",
-      "id": "my_title",
-      "label": "Collection list title",
-      "default": "THIS IS MY COLLECTION LIST"
-    }
-  ],
   "enabled_on": {
-    "templates": ["list-collections", "index", "product", "collection", "search"]
-  },
-  "presets": [
-    {
-      "name": "t:sections.list_collection.name"
-    }
-  ]
+    "templates": ["list-collections"]
+  }
 }
 {% endschema %}
-{% endcomment %}

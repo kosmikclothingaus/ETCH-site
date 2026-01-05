@@ -1,0 +1,109 @@
+/* 
+  ETCH Theme - Collection Page Components
+  Product grid, collection displays, and related styles
+*/
+
+/* ============================================================================
+   COLLECTION LAYOUT
+   ============================================================================ */
+
+   .collection-display {
+    flex-grow: 1;
+    height: 100%;
+  }
+  
+  /* Collection prints section - background image set inline in list-collections.liquid */
+  .collection-prints {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Background image: img-placeholder-prints.jpg (set inline in Liquid) */
+    background-repeat: no-repeat;
+    height: 100%;
+  }
+  
+  /* Collection tees section - background image set inline in list-collections.liquid */
+  .collection-tees {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Background image: img-placeholder-tees.jpg (set inline in Liquid) */
+    background-repeat: no-repeat;
+    height: 100%;
+  }
+  
+  /* ============================================================================
+     PRODUCT GRID
+     ============================================================================ */
+  
+  .tee-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .collection-collage {
+    margin: 10px;
+    box-sizing: border-box;
+    width: calc(25% - 20px);
+  }
+  
+  .collection-collage img {
+    margin: 10px;
+    width: 65%;
+    height: auto;
+  }
+  
+  /* ============================================================================
+     RESPONSIVE DISPLAY TOGGLES
+     ============================================================================ */
+  
+  .collection-desktop {
+    display: block;
+  }
+  
+  .collection-mobile {
+    display: none;
+  }
+  
+  /* ============================================================================
+     COLLECTION BUTTONS
+     ============================================================================ */
+  
+  .collection-button {
+    background-color: rgb(36, 141, 92);
+    width: 200px;
+    height: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .collection-button:hover {
+    background-color: rgb(28, 110, 72);
+  }
+  
+  /* ============================================================================
+     MOBILE RESPONSIVE
+     ============================================================================ */
+  
+  @media screen and (max-width: 768px) {
+    .collection-collage {
+      width: calc(100% - 20px);
+    }
+  
+    .collection-collage img {
+      margin: 10px;
+      width: 80%;
+      height: auto;
+    }
+  
+    .collection-desktop {
+      display: none;
+    }
+  
+    .collection-mobile {
+      display: block;
+    }
+  }

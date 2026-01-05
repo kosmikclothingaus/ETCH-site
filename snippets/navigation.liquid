@@ -1,0 +1,44 @@
+{% comment %}
+  Navigation Component
+  Reusable sidebar navigation
+{% endcomment %}
+<div class="desktop-icon">
+  <a href="{{ request.locale.root_url }}" style="text-align: center">
+    <img src="{{ 'icon-computer.png' | asset_url }}" alt="Home" width="70px">
+  </a>
+  <a href="{{ request.locale.root_url }}">
+    <div style="text-align: center">Home</div>
+  </a>
+</div>
+
+<div class="desktop-icon">
+  <a href="/cart" style="text-align: center">
+    <img src="{{ 'icon-cart.png' | asset_url }}" alt="Cart" width="70px">
+  </a>
+  <a href="/cart">
+    <div style="text-align: center">Cart [{{ cart.item_count }}]</div>
+  </a>
+</div>
+
+<div class="desktop-icon">
+  {% for collection in collections %}
+    {% if collection.title == "Prints" %}
+      {% continue %}
+    {% else %}
+      <a href="{{ collection.url }}" style="text-align: center">
+        <img src="{{ 'icon-collection.png' | asset_url }}" alt="Collections" width="70px">
+        <div style="text-align: center">Collections</div>
+      </a>
+      {% break %}
+    {% endif %}
+  {% endfor %}
+</div>
+
+<div class="desktop-icon">
+  <a href="/blogs/news/follow-us" style="text-align: center">
+    <img src="{{ 'icon-interwebs.png' | asset_url }}" alt="Socials" width="70px">
+  </a>
+  <a href="/blogs/news/follow-us">
+    <div style="text-align: center">Socials</div>
+  </a>
+</div>

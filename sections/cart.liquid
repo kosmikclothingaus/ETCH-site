@@ -1,116 +1,34 @@
 {% comment %}
-  *** Cart page ***
+  Cart page section
   See https://shopify.dev/docs/themes/architecture/templates/cart
-
-  ******** REMOVED CODE ****************
-  {% render 'section_title' %}
-
-        <h2>{{ section.settings.my_title }}</h2>
-
-  <div style="float: left; width: 30%;">
-              {% if cart.item_count > 0 %}
-                <!-- Rendering blocks -->
-                <!--
-                {% for block in section.blocks %}
-                  <div class="my_block" style="">
-                    <div class="my_block_title">Block ({% increment i %})</div>
-
-                    {% case block.type %}
-                      {% when 'my_type_1' %} 
-                      -->
-                        <!-- Cart notes and attributes -->
-                        <!--
-                        <div style="text-align: left;" class="my_left_space">
-                          <label for="my_cart_note">Cart notes:</label><br>
-                          <textarea name="note" id="my_cart_note">{{ cart.note }}</textarea>
-                        </div>
-                        <div style="text-align: left;" class="my_left_space">
-                          <label for="my_cart_attr">Cart attributes:</label>
-                          <select name="attributes[My Cart Attribute]" class="my_top_space my_bottom_space" id="my_cart_attr">
-                            <option
-                              value=""
-                              {% if cart.attributes['My Cart Attribute'] == '' %}
-                                selected="selected"
-                              {% endif %}
-                            ></option>
-                            <option
-                              value="Value-A"
-                              {% if cart.attributes['My Cart Attribute'] == 'Value-A' %}
-                                selected="selected"
-                              {% endif %}
-                            >
-                              Value A
-                            </option>
-                            <option
-                              value="Value-B"
-                              {% if cart.attributes['My Cart Attribute'] == 'Value-B' %}
-                                selected="selected"
-                              {% endif %}
-                            >
-                              Value B
-                            </option>
-                            <option
-                              value="Value-C"
-                              {% if cart.attributes['My Cart Attribute'] == 'Value-C' %}
-                                selected="selected"
-                              {% endif %}
-                            >
-                              Value C
-                            </option>
-                          </select>
-                        </div>
-
-                      {% when 'my_type_2' %}
-                      -->
-                        <!-- Total price and checkout button -->
-                        <!--
-                        <div style="text-align: right;" class="my_top_space my_bottom_space my_right_space">
-                          <p class="my_font_large">🛍️ Total: {{ cart.total_price | money_with_currency }}</p>
-                          <input type="submit" name="checkout" value="Checkout" class="my_font_large" style="width: 200px;">
-                        </div>
-                    {% endcase %}
-                  </div>
-                {% endfor %}
-              -->
-              {% endif %} 
-            </div>
-
-
 {% endcomment %}
+
 <div class="page-flex-container">
   <div class="page-window-box">
-
     <div class="window-box-header">
-
       <div class="window-box-title">
-        <h2> C:/Cart</h2>
+        <h2>C:/Cart</h2>
       </div>
-
-      <div class="window-box-icons"> 
-        <img src="{{'window-minusbox-v2.png' | asset_url }}" alt="minusbox">
-        <img src="{{ 'window-enlargebox-v2.png' | asset_url }}" alt="enlarge">
-        <img src="{{ 'window-exitbox-v2.png' | asset_url }}" alt="exit">
+      <div class="window-box-icons">
+        <img src="{{ 'window-minimise.png' | asset_url }}" alt="Minimize">
+        <img src="{{ 'window-maximise.png' | asset_url }}" alt="Maximize">
+        <img src="{{ 'window-close.png' | asset_url }}" alt="Close">
       </div>
-
     </div>
 
     <div class="window-box-content">
       <div class="page-content">
-        <!-- Cart section -->
-        
-
         {% if cart.item_count == 0 %}
           <p>🤷‍♂️ Your cart is empty.</p>
         {% endif %}
 
-        <form action="{{ routes.cart_url }}" method="post">
+        <form action="{{ routes.cart_url }}" method="post" id="cart-form">
           <div style="overflow: hidden; margin: 0 auto; display: flex; justify-content: center; align-items: center; width: 100%;">
             <div style="text-align: center; width: 100%;">
               <table>
                 {% for item in cart.items %}
                   <tr>
                     <td>
-                      <!--image section comment-->
                       {% if item.image != null %}
                         {{ item | image_url: width: 100 | image_tag: height: 100 }}
                       {% else %}
@@ -118,16 +36,13 @@
                       {% endif %}
                     </td>
                     <td style="text-align: left; padding-left: 1em;">
-                      <!--item title comment -->
                       <p href="{{ item.url }}" style="color: black; text-decoration: none; text-shadow: none;">{{ item.title }}</p>
 
-                      <!-- line item properties comment -->
                       {% unless item.properties == empty %}
                         {% for property in item.properties %}
                           {% unless property.last == '' %}
                             <div style="font-size: small; color: #000000ff; margin-top: 2px;">
                               {{ property.first }}:
-
                               {% if property.last contains '/uploads/' %}
                                 <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
                               {% else %}
@@ -138,7 +53,6 @@
                         {% endfor %}
                       {% endunless %}
 
-                      <!-- selling plan comment -->
                       {% unless item.selling_plan_allocation == empty %}
                         {% unless item.selling_plan_allocation.selling_plan == empty %}
                           <div style="font-size: small; color: #000000ff; margin-top: 2px;">
@@ -148,49 +62,44 @@
                       {% endunless %}
                     </td>
                     <td>
-                      <!--item quantity comment -->
                       x
                       <input
                         type="text"
                         value="{{ item.quantity }}"
                         size="2"
-                        onchange="cartUpdate(this);"
+                        class="cart-quantity-input"
+                        data-item-key="{{ item.key }}"
                         id="{{ item.key }}"
                       >
-                      <!-- item remove comment -->
                       <a href="{{ item.url_to_remove }}">🗑️</a>
                     </td>
                     <td>
-                      <!-- line price comment -->
                       {{ item.original_line_price | money }}
                     </td>
                   </tr>
                 {% endfor %}
               </table>
             </div>
-
-            
           </div>
         </form>
 
         <div style="float: none; height: 40px;"></div>
 
-        <!-- Cart notes -->
         <div style="text-align: center; width: 95%; margin: 0 auto;">
-                          <label for="my_cart_note">Leave a message:</label><br>
-                          <textarea name="note" id="my_cart_note" style="width: 80%; height: 40px; box-sizing: border-box;">{{ cart.note }}</textarea>
-                        </div>
+          <label for="my_cart_note">Leave a message:</label><br>
+          <textarea name="note" id="my_cart_note" style="width: 80%; height: 40px; box-sizing: border-box;">{{ cart.note }}</textarea>
+        </div>
 
         <div style="float: none; height: 20px;"></div>
 
-        <!-- Total price and checkout button -->       
         <div style="display: flex; width: 100%;" class="my_top_space my_bottom_space my_right_space">
           <p class="my_font_large" style="width: 45%; margin: 0; text-align: center;">
             Total: {{ cart.total_price | money_with_currency }}
           </p>
           <input type="submit" name="checkout" value="Checkout" 
                 class="my_font_large" 
-                style="width: 45%; text-align: center; margin: 0;">
+                style="width: 45%; text-align: center; margin: 0;"
+                form="cart-form">
         </div>
 
         <div style="float: none; height: 20px;"></div>
@@ -198,58 +107,15 @@
         {% if cart.item_count == 0 %}
           <p>🤷‍♂️ Your cart is empty.</p>
         {% endif %}
-      <!-- End of page content -->
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  const cartUpdate = (obj) => {
-    // Item quantity update triggered by the input change above
-    // See https://shopify.dev/docs/api/ajax
-    // See https://shopify.dev/docs/api/ajax/reference/cart#update-line-item-quantities
-    const url = `${window.Shopify.routes.root}cart/update.js`;
-    console.log(`url: ${url}`);
-    const body = `updates[${obj.id}]=${obj.value}`;
-    console.log(`body: ${body}`);
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: body,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(`data: ${JSON.stringify(data)}`);
-        window.location.reload();
-      });
-  };
-</script>
-
 {% schema %}
 {
   "name": "t:sections.cart.name",
   "limit": 1,
-  "settings": [
-    {
-      "type": "text",
-      "id": "my_title",
-      "label": "Cart title",
-      "default": "GANG GANG GANG GANG"
-    }
-  ],
-  "blocks": [
-    {
-      "name": "Cart notes and attributes",
-      "type": "my_type_1"
-    },
-    {
-      "name": "Price and Checkout",
-      "type": "my_type_2"
-    }
-  ],
   "enabled_on": {
     "templates": ["cart"]
   }

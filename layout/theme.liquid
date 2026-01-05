@@ -1,6 +1,6 @@
 {% comment %}
-  *** Base page to render all theme contents ***
-  See https://shopify.dev/docs/themes/architecture
+  Base layout template
+  See https://shopify.dev/docs/themes/architecture/layouts
 {% endcomment %}
 <!doctype html>
 <html>
@@ -8,105 +8,106 @@
     <meta name="description" content="unique hand drawn tshirts brisbane">
     <meta name="author" content="etch">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Shopify generated header contents -->
-    {% comment %}
-      See https://shopify.dev/docs/themes/architecture/layouts#content_for_header
-    {% endcomment %}
+    
     {{ content_for_header }}
 
-    <!-- My own global CSS -->
-    {{ 'my_css.css' | asset_url | stylesheet_tag }}
+    <!-- Dynamic Font Face Declarations -->
+    <style>
+      @font-face {
+        font-family: "helvetica bold";
+        src: url("{{ 'font-helvetica-bold2.woff2' | asset_url }}") format("woff2"),
+             url("{{ 'font-helvetica-bold.woff' | asset_url }}") format("woff");
+      }
+      @font-face {
+        font-family: "helvetica bold condensed";
+        src: url("{{ 'font-helvetica-bold-condensed.woff2' | asset_url }}") format("woff2"),
+             url("{{ 'font-helvetica-bold-condensed.woff' | asset_url }}") format("woff");
+      }
+      @font-face {
+        font-family: "futura bold";
+        src: url("{{ 'font-futura-bold.woff2' | asset_url }}") format("woff2"),
+             url("{{ 'font-futura-bold.woff' | asset_url }}") format("woff");
+      }
+      @font-face {
+        font-family: "futura bold italic";
+        src: url("{{ 'font-futura-bold-italic.woff2' | asset_url }}") format("woff2"),
+             url("{{ 'font-futura-bold-italic.woff' | asset_url }}") format("woff");
+      }
+      @font-face {
+        font-family: "consolas";
+        src: url("{{ 'font-consolas.woff2' | asset_url }}") format("woff2"),
+             url("{{ 'font-consolas.woff' | asset_url }}") format("woff");
+      }
+      @font-face {
+        font-family: "segoe UI";
+        src: url("{{ 'font-segoe-ui.woff2' | asset_url }}") format("woff2"),
+             url("{{ 'font-segoe-ui.woff' | asset_url }}") format("woff");
+      }
+      
+      /* Dynamic background images */
+      body {
+        background-image: url("{{ 'bg-desktop.png' | asset_url }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      
+      @media screen and (max-width: 768px) {
+        body {
+          background-image: url("{{ 'bg-mobile.png' | asset_url }}");
+        }
+      }
+    </style>
 
-    <!-- My own global JavaScript -->
-    {{ 'my_js.js' | asset_url | script_tag }}
+    <!-- CSS Files (load in order: base -> components -> layout) -->
+    {{ 'etch-base.css' | asset_url | stylesheet_tag }}
+    {{ 'etch-window-box.css' | asset_url | stylesheet_tag }}
+    {{ 'etch-navigate.css' | asset_url | stylesheet_tag }}
+    {{ 'etch-product.css' | asset_url | stylesheet_tag }}
+    {{ 'etch-popup.css' | asset_url | stylesheet_tag }}
+    {{ 'etch-collection.css' | asset_url | stylesheet_tag }}
+    {{ 'etch-footer.css' | asset_url | stylesheet_tag }}
+    {{ 'etch-table.css' | asset_url | stylesheet_tag }}
+    {{ 'etch-layout.css' | asset_url | stylesheet_tag }}
 
-    <!-- My own font CSS (if selected only) -->
-    {% comment %}
-      See https://shopify.dev/docs/themes/architecture/settings/fonts
-    {% endcomment %}
+    <!-- JavaScript Files -->
+    {{ 'etch-popup.js' | asset_url | script_tag }}
+    {{ 'etch-slideshow.js' | asset_url | script_tag }}
+    {{ 'etch-cart.js' | asset_url | script_tag }}
+    {{ 'etch-main.js' | asset_url | script_tag }}
+
+    <!-- Conditional font CSS -->
     {% if settings.use_font == true %}
-      {{ 'my_font.css' | asset_url | stylesheet_tag }}
+      <style>
+        @font-face {
+          font-family: "Noto Sans JP";
+          src: url("{{ 'font-my_font.woff' | asset_url }}") format("woff");
+        }
+        .my_font {
+          font-family: 'helvetica bold';
+        }
+      </style>
     {% endif %}
-    
-
-
   </head>
 
   <body>
     <div class="footer-top">
       {% sections 'footer_group' %}
-      </div>
+    </div>
 
     <div class="my_layout">
-      {% comment %}
-      <!-- My own header group -->
-      <!-- {% sections 'header_group' %} -->
-
-      <!-- Shopify generated template (body) contents -->
-      
-        See https://shopify.dev/docs/themes/architecture/layouts#content_for_layout
-      {% endcomment %}
       <div class="desktop-flex-container">
-      <div class="desktop-icons-container">
-
-      <div class="desktop-icon">
-      <a href="{{ request.locale.root_url }}" style="text-align: center">
-      <img src="{{ 'computer-icon.png' | asset_url }}" alt="Computer Icon" width="70px">
-      </a>
-      <a href="{{ request.locale.root_url }}">
-      <div style="text-align: center"> 
-      Home
-      </div>
-      </a> </div>
-
-      <div class="desktop-icon"> 
-      <a href="/cart" style="text-align: center">
-      <img src="{{ 'cart-icon.png' | asset_url }}" alt="Cart Icon" width="70px"> 
-      </a>
-      <a href="/cart">
-      <div style="text-align: center"> 
-      Cart [{{ cart.item_count }}]
-      </div>
-      </a>
+        <div class="desktop-icons-container">
+          {% render 'navigation' %}
+        </div>
+        
+        <div class="my-layout">
+          {{ content_for_layout }}
+        </div>
       </div>
 
-      <div class="desktop-icon">
-      {% for collection in collections %}
-        {% if collection.title == "Prints" %}
-          {% continue %}
-        {% else %}      
-            <a href="{{ collection.url }}" style="text-align: center">
-            <img src="{{ 'collection icon.png' | asset_url }}" alt="Book Icon" width="70px">
-            <div style="text-align: center"> 
-            Collections
-            </div>
-            </a>
-        {% endif %}
-      {% endfor %}
-      </div>
-
-      <div class="desktop-icon">
-      <a href="/blogs/news/follow-us" style="text-align: center">
-      <img src="{{ 'interwebs-icon.png' | asset_url }}" alt="World Icon" width="70px">
-      </a>
-      <a href="/blogs/news/follow-us">
-      <div style="text-align: center"> 
-      Socials
-      </div>
-      </a></div>
-
-      </div>
-      <div class="my-layout">
-      {{ content_for_layout }}
-      </div>
-      </div>
-
-      <!-- My own footer group -->
       <div class="footer-bottom">
-      {% sections 'footer_group' %}
-      </footer>
+        {% sections 'footer_group' %}
+      </div>
     </div>
   </body>
-  
-
 </html>
